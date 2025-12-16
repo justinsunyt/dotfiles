@@ -1,0 +1,8 @@
+theme = Catppuccin Mocha
+font-family = Berkeley Mono Variable
+font-thicken = true
+macos-titlebar-style = tabs
+keybind = global:super+backslash=toggle_quick_terminal
+quick-terminal-position = bottom
+quick-terminal-animation-duration = 0
+keybind = shift+enter=text:\n
