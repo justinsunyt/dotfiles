@@ -1,0 +1,512 @@
+which node
+defaults write com.apple.dock autohide-time-modifier -float 0.15; killall Dock
+zs
+clear
+ngrok http 300
+brew install ngrok
+ngrok http 3000
+ngrok config add-authtoken 2RHzdJGXwL1Pu5RjWFs2hCTSLxF_2V38njfdzcpq8zpWea3g9
+ngrok http 3000
+git config
+git config --global user.name "Justin Sun"
+git config --global user.email justinsunyt@gmail.com
+git config
+git config --global
+git config --list
+git config help
+git config --help
+git config --global unset user.name
+git config unset user.name
+git config unset user.email
+gh auth
+gh auth setup-git
+git
+cdd scout
+cdd scout
+cdd
+cd ~/dotfiles/dot_config/zsh
+vim .zshrc
+zs
+brew install zsh-completions
+vim .zshrc
+zs
+zs
+chmod go-w '$HOMEBREW_PREFIX/share'
+echo HOMEBREW_PREFIX
+echo $HOMEBREW_PREFIX
+chmod -R go-w "$HOMEBREW_PREFIX/share/zsh"
+zs
+chmod go-w "$HOMEBREW_PREFIX/share"
+zs
+vim .zshrc
+zs
+cdd
+cdd scout
+cdd
+zs
+vim .zshrc
+cd ~/dotfiles/dot_config/zsh
+vim .zshrc
+zs
+vim .zshrc
+zs
+\:wq
+cat .zshrc
+vim .zshrc
+zs
+vim .zshrc
+zs
+vim .zshrc
+zs
+vim .zshrc
+zs
+vim .zshrc
+zs
+cdd scout
+cd -
+vim .zshrc
+zs
+cdd sc
+compaudit
+rm -f ~/.zcompdump; compinit
+zs
+vim .zshrc
+zs
+cdd scout
+git pull
+git checkout develop && git pull
+git merge origin/main
+gpp
+git checkout main
+git pull
+git push
+git checkout develop && git pull
+git merge origin/main
+git push
+source /Applications/Cursor.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh
+cdd scout
+p i
+p add @vercel/analytics
+git pull --rebae
+git pull --rebase
+gpp
+git stash
+git pull
+git stash pop
+git checkout -b justin/landing-page
+git pull
+git config
+git config --global push.autoSetupRemote true
+git push
+git pull
+git fetch origin
+git rebase origin/justin/landing-page 
+git reset --hard
+git checkout justin/landing-page
+git checkout develop && git pull
+claude
+npm install -g @anthropic-ai/claude-code
+claude
+clear
+claude
+clear
+claude
+clear
+claude
+clear
+ani-cli
+brew install curl grep aria2 ffmpeg git fzf yt-dlp && \\
+brew install --cask iina
+brew install curl grep aria2 ffmpeg git fzf yt-dlp && \\
+brew install --cask iina
+cdd scout
+p dev
+p trigger:dev
+clear
+p trigger:dev
+crush
+npm install -g @sourcegraph/amp
+amp
+amp
+p trigger:dev
+p trigger;dev
+p trigger:dev
+cdd scout
+git checkout main
+git pull
+clear
+cdd
+git clone https://github.com/scrapybara/vibe-coding-interview
+cd vibe-coding-interview
+git fetch
+git branch
+git fetch
+git checkout
+git checkout capy/draft-combined-readm-742004ca
+cursor .
+vercel env pull
+pnpm i -g vercel
+npm i -g vercel
+vercel env pull
+cursor .
+vercel env pull
+vercel link
+vercel env pull
+npm i -g @charmland/crush
+charm
+crush
+/clear
+/clear
+clear
+cdd
+git clone https://github.com/justinsunyt/opencode.git
+cdd opencode
+claude
+/clear
+clear
+crush
+clear
+cdd scout
+git checkout capy/add-xai-grok-4-fast--5bb44dfc
+git fetch
+git checkout f1shy/new-capy-code-ui 
+cdd
+git clone https://github.com/scrapybara/optspace
+cdd optspace
+cursor .
+git checkout develop && git pull
+cdd scout
+git checkout develop && git pull
+bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
+spf
+neofetch
+sudo apt install neofetch
+brew install neofetch
+neofetch
+/clear
+clear
+neofetch
+clear
+p dev
+p i
+p dev
+playwright install
+pnpm playwright install
+p dev
+brew install btop
+btop
+claude
+clear
+p trigger:dev
+clear
+crush
+clear
+claude
+claude
+clear
+cladue
+clear
+claude
+p dev:web
+clear
+p dev:web
+p i
+p i
+pi
+p i
+clear
+p i
+p i
+p dev:web
+p dev:web
+p dev:web
+clear
+clear
+p dev:web
+cdd scout
+git checkout main && git pull
+p i
+git pull
+git checkout develop && git pull
+git checkout -b justin/vscode
+cd backend
+cd packages/backend
+p build
+git push
+git checkout capy/replace-jam-files-fi-c079a5b0
+git pul
+git fetch
+git checkout capy/replace-jam-files-fi-c079a5b0
+git checkout capy/restore-dedicated-ja-80d46a74
+git fetch
+git checkout capy/restore-dedicated-ja-80d46a74
+git pull
+gp
+gp
+git pull
+gp
+gp
+git checkout develop && git pull
+git fetch
+git checkout capy/remove-unused-stripe-c2a039cd
+p i
+p check
+pnpm check
+p check
+p turbo check
+git pull
+p i
+gp --rebase
+p i
+p check
+p turbo check
+git checkout develop && git pull
+cd ..
+cd ..
+git pull
+git fetch
+git checkout capy/add-reasoning-mode-c-da61b0a5
+git fetch
+git checkout capy/fix-optimistic-messa-6e2ef28c
+git checkout develop && git pull
+git fethc
+git fetc
+git fetch
+clear
+git checkout capy/add-claude-haiku-45--673ae00e
+git checkout develop && git pull
+p dev
+clear
+p dev
+p i
+clear
+p dev
+clear
+p dev
+clear
+p dev
+p dev
+p dev
+c;ear
+c;ear
+clear
+p dev
+cdd scout
+git pull
+git merge origin/main
+git psuh
+git push
+git pull
+clear
+pnpm clean
+pnpm install
+CENTRAL_LICENSE_KEY="C90B8468-18CB-4F22-A7C6-2369651BCD4D" pnpm install
+git checkout capy/add-fastsmart-toggle-b04e6c1f
+git fetch
+git checkout capy/add-fastsmart-toggle-b04e6c1f
+git pull
+git pull
+gp
+git checkout capy/hardcode-claude-sonn-ca128de1
+git fetch
+git checkout capy/hardcode-claude-sonn-ca128de1
+git checkout develop && git pull
+git fetch
+git checkout capy/lock-triage-agent-to-10b48e3d 
+git checkout develop && git pull
+p i
+git fetch
+git checkout capy/remove-selectedrepos-d32445be
+git checkout develop && git pull
+git checkout add-overview-myYBA
+git fetch
+git checkout capy/cap-313-364a1dd1
+git checkout develop && git pull
+git stash
+git checkout develop && git pull
+p dev
+clear
+p dev
+p eev
+clear
+p dev
+clear
+p dev:web
+clear
+p dev:web
+p dev:web
+clear
+clear
+p dev:web
+clear
+p dev:web
+p dev
+p dev:web
+clear
+p i
+clear
+p dev
+p i
+p i @ai-sdk/anthropic
+p dev
+p dev
+claude
+cdd scout
+claude
+claude
+pnpm dev
+pnpm i
+p dev
+pnpm dev
+p dev
+p i
+p i @ai-sdk/anthropic
+p dev
+p dev
+clear
+p dev:web
+p dev
+p dev:web
+p i
+cd packages/web
+p i
+cd ..
+p dev:web
+p dev
+clear
+p dev:Web
+clear
+p dev:web
+p build
+p build
+cd web
+p build
+clear
+p dev
+clear
+p build
+p build
+p build
+p build
+p build
+p build
+p build
+p build
+p build
+clear
+p dev
+clear
+p build
+dotenv -e ../../.env p build
+cd ..
+cd ..
+clear
+p dev:web
+clear
+cd packages/web
+p build
+cd ..
+cd ..
+p dev:web
+clear
+p dev:web
+p dev
+p dev:wegb
+p dev:web
+cclear
+clear
+p clean
+clear
+p i
+p dev:web
+clear
+p dev
+p dev:web
+clear
+p dev
+clear
+p dev;web
+clear
+p dev:web
+clear
+p clear
+p dev:web
+clear
+p dev:web
+git fetch
+git checkout andrew/feature/captain 
+git pull
+git checkout develop && git pull
+git status
+git checkout -b justin/manual-pr
+p i
+pnpm clean
+p i
+git checkout develop && git pull
+git stash
+git pull
+clear
+p clean
+cd ..
+cd scout
+p i
+git checkout andrew/feature/captain 
+git pull
+p i
+gp
+git checkout develop
+git checkout -b justin/better-prs
+p db:push
+cd packages/backend
+p db:push
+git fetch
+pnpm dev:web
+p i
+p dev
+clear
+p dev:web
+/clear
+clear
+p dev:web
+clear
+p dev:web
+clear
+p dev
+p dev:web
+p dev:web
+p dev
+p dev
+p dev
+p dev
+p dev
+p dev:web
+clear
+p edv
+p dev
+clear
+p dev
+clear
+p dev
+clear
+p dev
+clear
+p dev
+clear
+p dev
+clear
+p dev
+clear
+p dev
+clear
+p dev
+clear
+p dev
+claude
+curl -fsSL https://claude.ai/install.sh | bash
+curl -fsSL https://claude.ai/install.sh | bash
+claude
+curl -fsSL https://claude.ai/install.sh | bash
+curl -fsSL https://claude.ai/install.sh
+clear
+npm i -g @anthropic-ai/claude-code
+claude

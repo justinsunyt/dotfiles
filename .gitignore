@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Sensitive configs (contain auth tokens)
+dot_config/ngrok/ngrok.yml
+dot_config/gh/hosts.yml
+
+# Local machine config
+dot_config/.claude/
