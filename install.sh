@@ -13,12 +13,22 @@ mkdir -p "$HOME/.config"
 ln -sf "$DOTFILES/.zshenv" "$HOME/.zshenv"
 echo "  ~/.zshenv -> dotfiles/.zshenv"
 
+# Symlink .gitconfig
+ln -sf "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
+echo "  ~/.gitconfig -> dotfiles/.gitconfig"
+
 # Symlink all configs in dot_config to ~/.config
 for dir in "$DOTFILES/dot_config"/*/; do
     name=$(basename "$dir")
 
-    # Skip .claude (local machine config)
-    if [[ "$name" == ".claude" ]]; then
+    # Claude: selectively symlink safe files (not the whole dir)
+    if [[ "$name" == "claude" ]]; then
+        mkdir -p "$HOME/.config/claude"
+        for file in "$DOTFILES/dot_config/claude"/*; do
+            fname=$(basename "$file")
+            ln -sf "../dotfiles/dot_config/claude/$fname" "$HOME/.config/claude/$fname"
+            echo "  ~/.config/claude/$fname -> dotfiles/dot_config/claude/$fname"
+        done
         continue
     fi
 
