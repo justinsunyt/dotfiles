@@ -26,6 +26,10 @@ mkdir -p "$HOME/.config"
 echo ""
 echo "Checking for existing configs to backup..."
 backup "$HOME/.zshenv"
+backup "$HOME/.zshrc"
+backup "$HOME/.zprofile"
+backup "$HOME/.bashrc"
+backup "$HOME/.bash_profile"
 backup "$HOME/.gitconfig"
 for dir in "$DOTFILES/dot_config"/*/; do
     name=$(basename "$dir")
