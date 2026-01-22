@@ -17,3 +17,8 @@ Source of truth: `~/dotfiles/`
 - Location: `~/.config/claude/` (set via CLAUDE_CONFIG_DIR)
 - Global CLAUDE.md: `~/.config/claude/CLAUDE.md` (this file)
 - Project instructions: `<project>/CLAUDE.md`
+
+## Git commits
+
+- Never add Co-Authored-By or any contributor attribution for Claude
+- Use conventional commits: `type: short description` (e.g., `feat:`, `fix:`, `chore:`, `docs:`)
