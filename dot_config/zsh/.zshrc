@@ -36,11 +36,12 @@ compinit
 # functions
 function cdd { cd ~/Development/$1 }; compdef "_path_files -W ~/Development" cdd
 
-# Create worktree: gwt justin/feature-name
+# Create worktree: gwt justin/feature-name [base-branch]
 # From ~/Development/scout on main -> creates ~/Development/scout-justin/feature-name with branch justin/feature-name
+# Optional: gwt justin/feature-name origin/develop -> branches from origin/develop
 function gwt {
   local branch=$1
-  local base_branch=$(git branch --show-current)
+  local base_branch=${2:-$(git branch --show-current)}
   local repo_root=$(git rev-parse --show-toplevel)
   local repo_name=$(basename "$repo_root")
   local parent_dir=$(dirname "$repo_root")
