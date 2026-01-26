@@ -35,7 +35,6 @@ backup "$HOME/.claude/CLAUDE.md"
 backup "$HOME/.claude/settings.json"
 for dir in "$DOTFILES/dot_config"/*/; do
     name=$(basename "$dir")
-    [[ "$name" == "claude" ]] && continue
     backup "$HOME/.config/$name"
 done
 
@@ -54,21 +53,17 @@ echo "  ~/.zshenv -> dotfiles/.zshenv"
 ln -sf "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
 echo "  ~/.gitconfig -> dotfiles/.gitconfig"
 
+# Symlink claude config to ~/.claude/
+mkdir -p "$HOME/.claude"
+for file in "$DOTFILES/dot_claude"/*; do
+    fname=$(basename "$file")
+    ln -sf "$DOTFILES/dot_claude/$fname" "$HOME/.claude/$fname"
+    echo "  ~/.claude/$fname -> dotfiles/dot_claude/$fname"
+done
+
 # Symlink all configs in dot_config to ~/.config
 for dir in "$DOTFILES/dot_config"/*/; do
     name=$(basename "$dir")
-
-    # Claude: symlink to ~/.claude/ (not ~/.config/claude/)
-    if [[ "$name" == "claude" ]]; then
-        mkdir -p "$HOME/.claude"
-        for file in "$DOTFILES/dot_config/claude"/*; do
-            fname=$(basename "$file")
-            ln -sf "$DOTFILES/dot_config/claude/$fname" "$HOME/.claude/$fname"
-            echo "  ~/.claude/$fname -> dotfiles/dot_config/claude/$fname"
-        done
-        continue
-    fi
-
     target="$HOME/.config/$name"
 
     # Remove existing (file, dir, or symlink)
