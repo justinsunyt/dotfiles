@@ -1,6 +1,7 @@
 #!/bin/bash
-
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+script_dir="$(dirname "$0")"
 
 get_worktree_info() {
     local pane_path="$1"
@@ -38,7 +39,16 @@ i=1
 lines=""
 
 while IFS='|' read -r target path; do
-    info=$(get_worktree_info "$path")
+    worktree_info=$(get_worktree_info "$path")
+    window_id=$(tmux display-message -t "$target" -p '#{window_id}' 2>/dev/null)
+    agent_name=$("$script_dir/agent-status.sh" "$window_id")
+
+    if [[ -n "$agent_name" ]]; then
+        info="\033[90m$agent_name\033[0m $worktree_info"
+    else
+        info="$worktree_info"
+    fi
+
     lines+="$target\t$info"$'\n'
     [[ "$target" == "$current" ]] && pos=$i
     ((i++))

@@ -36,18 +36,27 @@ compinit
 # functions
 function cdd { cd ~/Development/$1 }; compdef "_path_files -W ~/Development" cdd
 
-# Create worktree: gwt justin/feature-name [base-branch]
-# From ~/Development/scout on main -> creates ~/Development/scout-justin/feature-name with branch justin/feature-name
-# Optional: gwt justin/feature-name origin/develop -> branches from origin/develop
+# Create worktree: gwt branch-name [base-branch]
+# - If branch exists (local or remote), checks it out
+# - If branch doesn't exist, creates it off base-branch (defaults to current branch)
 function gwt {
   local branch=$1
-  local base_branch=${2:-$(git branch --show-current)}
+  local base_branch=$2
   local repo_root=$(git rev-parse --show-toplevel)
   local repo_name=$(basename "$repo_root")
   local parent_dir=$(dirname "$repo_root")
   local worktree_path="$parent_dir/${repo_name}-${branch//\//-}"
 
-  git worktree add -b "$branch" "$worktree_path" "$base_branch" && cd "$worktree_path"
+  # Check if branch exists locally or on remote
+  if git show-ref --verify --quiet "refs/heads/$branch" || \
+     git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+    # Branch exists, check it out
+    git worktree add "$worktree_path" "$branch" && cd "$worktree_path"
+  else
+    # Branch doesn't exist, create it
+    local base=${base_branch:-$(git branch --show-current)}
+    git worktree add -b "$branch" "$worktree_path" "$base" && cd "$worktree_path"
+  fi
 
   # Copy .env files from original worktree
   for env_file in "$repo_root"/.env*; do
