@@ -31,8 +31,11 @@ backup "$HOME/.zprofile"
 backup "$HOME/.bashrc"
 backup "$HOME/.bash_profile"
 backup "$HOME/.gitconfig"
+backup "$HOME/.claude/CLAUDE.md"
+backup "$HOME/.claude/settings.json"
 for dir in "$DOTFILES/dot_config"/*/; do
     name=$(basename "$dir")
+    [[ "$name" == "claude" ]] && continue
     backup "$HOME/.config/$name"
 done
 
@@ -55,13 +58,13 @@ echo "  ~/.gitconfig -> dotfiles/.gitconfig"
 for dir in "$DOTFILES/dot_config"/*/; do
     name=$(basename "$dir")
 
-    # Claude: selectively symlink safe files (not the whole dir)
+    # Claude: symlink to ~/.claude/ (not ~/.config/claude/)
     if [[ "$name" == "claude" ]]; then
-        mkdir -p "$HOME/.config/claude"
+        mkdir -p "$HOME/.claude"
         for file in "$DOTFILES/dot_config/claude"/*; do
             fname=$(basename "$file")
-            ln -sf "../dotfiles/dot_config/claude/$fname" "$HOME/.config/claude/$fname"
-            echo "  ~/.config/claude/$fname -> dotfiles/dot_config/claude/$fname"
+            ln -sf "$DOTFILES/dot_config/claude/$fname" "$HOME/.claude/$fname"
+            echo "  ~/.claude/$fname -> dotfiles/dot_config/claude/$fname"
         done
         continue
     fi
