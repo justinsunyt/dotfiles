@@ -14,5 +14,5 @@ Always edit the source in `~/dotfiles/`, not the symlinked locations.
 
 ## Git commits
 
-- Never add Co-Authored-By or any contributor attribution for Claude
+- Never add Co-Authored-By or any contributor attribution
 - Use conventional commits: `type(scope): short description`
