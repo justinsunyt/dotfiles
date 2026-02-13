@@ -1,0 +1,33 @@
+{
+  "lastChangelogVersion": "0.52.10",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.3-codex",
+  "defaultThinkingLevel": "high",
+  "theme": "dark",
+  "collapseChangelog": true,
+  "terminal": {
+    "showImages": true,
+    "clearOnShrink": false
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 12,
+    "baseDelayMs": 5000
+  },
+  "compaction": {
+    "enabled": false,
+    "reserveTokens": 24576,
+    "keepRecentTokens": 24000
+  },
+  "extensions": [
+    "~/.pi/agent/extensions/handoff.ts"
+  ],
+  "doubleEscapeAction": "tree",
+  "hideThinkingBlock": true,
+  "quietStartup": false,
+  "followUpMode": "all",
+  "steeringMode": "all",
+  "packages": [
+    "npm:pi-threads"
+  ]
+}
