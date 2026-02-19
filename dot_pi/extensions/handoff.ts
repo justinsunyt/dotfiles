@@ -116,13 +116,13 @@ function buildSummary(params: HandoffInput): string {
 
 function buildResumePrompt(pending: PendingHandoff): string {
 	return [
-		"Handoff compaction complete. Resume execution now.",
+		"Continue from the handoff summary in fresh context.",
 		"",
 		`Primary request: ${pending.primaryRequest}`,
 		`Current task before handoff: ${pending.currentTask}`,
 		`Next step: ${pending.nextStep}`,
 		"",
-		"Continue directly from the next step. Do not run another handoff unless context is critical again.",
+		"Start with the next step immediately.",
 	].join("\n");
 }
 
@@ -240,6 +240,14 @@ export default function handoffExtension(pi: ExtensionAPI) {
 	pi.on("tool_call", async (event, ctx) => {
 		if (event.toolName === "handoff") return;
 
+		if (pendingHandoff) {
+			return {
+				block: true,
+				reason:
+					"Handoff requested. Context compaction is pending and will run at the end of this turn. Do not call additional tools.",
+			};
+		}
+
 		const warning = computeWarning(ctx);
 		if (warning.level !== "critical") return;
 
@@ -248,6 +256,17 @@ export default function handoffExtension(pi: ExtensionAPI) {
 			reason:
 				"Context is critically large. Call the handoff tool immediately before using other tools.",
 		};
+	});
+
+	pi.on("tool_result", async (event, ctx) => {
+		if (event.toolName !== "handoff") return;
+		if (!pendingHandoff) return;
+
+		// End the current run immediately after handoff so compaction happens without
+		// an extra assistant text response in the pre-compaction context.
+		if (!ctx.isIdle()) {
+			ctx.abort();
+		}
 	});
 
 	pi.on("agent_end", async (_event, ctx) => {
@@ -264,12 +283,15 @@ export default function handoffExtension(pi: ExtensionAPI) {
 
 				if (!completedHandoff) return;
 				const resumePrompt = buildResumePrompt(completedHandoff);
-				if (ctx.isIdle()) {
-					pi.sendUserMessage(resumePrompt);
-				} else {
-					pi.sendUserMessage(resumePrompt, { deliverAs: "followUp" });
-				}
-				if (ctx.hasUI) ctx.ui.notify("Queued automatic resume after handoff.", "info");
+				pi.sendMessage(
+					{
+						customType: "handoff-resume",
+						content: resumePrompt,
+						display: false,
+					},
+					{ triggerTurn: true },
+				);
+				if (ctx.hasUI) ctx.ui.notify("Resuming immediately from fresh context.", "info");
 			},
 			onError: (error) => {
 				handoffCompactionQueued = false;
