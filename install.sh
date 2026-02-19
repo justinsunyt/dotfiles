@@ -42,6 +42,7 @@ echo "Installing dotfiles..."
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.claude"
 mkdir -p "$HOME/.codex"
+mkdir -p "$HOME/.pi/agent"
 
 echo ""
 echo "Checking for existing configs to backup..."
@@ -71,6 +72,10 @@ symlink_contents "$DOTFILES/dot_claude" "$HOME/.claude" ".claude"
 echo ""
 echo "Codex config:"
 symlink_contents "$DOTFILES/dot_codex" "$HOME/.codex" ".codex"
+
+echo ""
+echo "Pi config:"
+symlink_contents "$DOTFILES/dot_pi" "$HOME/.pi/agent" ".pi/agent"
 
 echo ""
 echo "~/.config:"
