@@ -14,3 +14,6 @@ dot_config/.claude/
 dot_config/zsh/.zsh_history
 dot_config/zsh/.zcompdump*
 dot_config/zsh/.zsh_sessions/
+
+# Local extension dependencies
+dot_pi/extensions/*/node_modules/
