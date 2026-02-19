@@ -1,0 +1,12 @@
+{
+  "name": "turboread",
+  "version": "1.0.0",
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "dependencies": {
+    "jsonrepair": "^3.13.2"
+  }
+}

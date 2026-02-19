@@ -1,0 +1,7 @@
+{
+  "name": "exa-search",
+  "version": "1.0.0",
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}
