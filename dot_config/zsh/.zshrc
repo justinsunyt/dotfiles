@@ -58,10 +58,13 @@ function gwt {
     git worktree add -b "$branch" "$worktree_path" "$base" && cd "$worktree_path"
   fi
 
-  # Copy .env files from original worktree
+  # Symlink .env files from original worktree
   for env_file in "$repo_root"/.env*; do
-    [[ -f "$env_file" ]] && cp "$env_file" "$worktree_path/"
+    [[ -f "$env_file" ]] && ln -sf "$env_file" "$worktree_path/"
   done
+
+  # Symlink .vercel folder if it exists
+  [[ -d "$repo_root/.vercel" ]] && ln -sf "$repo_root/.vercel" "$worktree_path/.vercel"
 }
 
 # Delete worktree + branch: gwtd (run from inside the worktree)
@@ -90,3 +93,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # ami
 export PATH="$HOME/.ami/bin:$PATH"
+
+# mysql-client (keg-only)
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
