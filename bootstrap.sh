@@ -48,10 +48,18 @@ fi
 
 NIX_DAEMON_PROFILE=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
-if [[ -e "$NIX_DAEMON_PROFILE" ]]; then
+source_nix_daemon_profile() {
+  [[ -e "$NIX_DAEMON_PROFILE" ]] || return 0
+
+  # The installer profile references shell-specific variables such as
+  # ZSH_VERSION without defaults, so it is not safe to source under `set -u`.
+  set +u
   # shellcheck disable=SC1090
   source "$NIX_DAEMON_PROFILE"
-fi
+  set -u
+}
+
+source_nix_daemon_profile
 
 if ! command -v nix >/dev/null 2>&1; then
   echo "Installing Lix..."
@@ -59,10 +67,7 @@ if ! command -v nix >/dev/null 2>&1; then
     sh -s -- install
 fi
 
-if [[ -e "$NIX_DAEMON_PROFILE" ]]; then
-  # shellcheck disable=SC1090
-  source "$NIX_DAEMON_PROFILE"
-fi
+source_nix_daemon_profile
 
 if ! command -v nix >/dev/null 2>&1; then
   echo "Nix was installed but is not available in this shell. Open a new terminal and rerun bootstrap." >&2
