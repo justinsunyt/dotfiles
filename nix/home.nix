@@ -76,6 +76,7 @@ in
     ];
 
     file = {
+      ".terminfo".source = "${pkgs.ghostty-bin.terminfo}/share/terminfo";
       ".zshenv".source = mutableLink "${dotfilesDir}/.zshenv";
       ".gitconfig".source = mutableLink "${dotfilesDir}/.gitconfig";
 
