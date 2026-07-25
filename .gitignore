@@ -3,12 +3,21 @@
 .AppleDouble
 .LSOverride
 
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
 # Sensitive configs (contain auth tokens)
 dot_config/ngrok/ngrok.yml
 dot_config/gh/hosts.yml
 
 # Local machine config
 dot_config/.claude/
+
+# Zed runtime data (not config)
+dot_config/zed/conversations/
+dot_config/zed/prompts/
 
 # Zsh cache/history (changes constantly)
 dot_config/zsh/.zsh_history

@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.52.10",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.3-codex",
+  "lastChangelogVersion": "0.67.2",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-6",
   "defaultThinkingLevel": "high",
   "theme": "dark",
   "collapseChangelog": true,

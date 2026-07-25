@@ -1,3 +1,7 @@
+if (( ! $+functions[dotfiles_prefer_nix] )); then
+  source "$HOME/.zshenv"
+fi
+
 # PATH
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
@@ -15,9 +19,12 @@ alias p="pnpm"
 alias z="nvim ~/.config/zsh/.zshrc"
 alias zs="source ~/.config/zsh/.zshrc"
 alias cc="claude --dangerously-skip-permissions"
+alias kc="kumiclaude"
 alias co="codex --yolo"
 alias gwtl="git worktree list"
 alias gwtp="git worktree prune"
+alias ta="tmux attach -t"
+alias tl="tmux ls"
 
 # Starship
 eval "$(starship init zsh)"
@@ -26,10 +33,6 @@ eval "$(starship init zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# zsh-completions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-fi
 autoload -Uz compinit
 compinit
 
@@ -77,22 +80,6 @@ function gwtd {
   git worktree remove "$current_path" && git branch -D "$branch"
 }
 
-# bun completions
-[ -s "/Users/justin/.bun/_bun" ] && source "/Users/justin/.bun/_bun"
-
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/justin/.lmstudio/bin"
-# End of LM Studio CLI section
-
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-
-# ami
-export PATH="$HOME/.ami/bin:$PATH"
-
-# mysql-client (keg-only)
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+# Version managers and application installers may prepend their own runtimes.
+# Restore the declared Nix tools while keeping their unique commands available.
+dotfiles_prefer_nix

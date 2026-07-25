@@ -35,7 +35,19 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
+
+# Screen Studio's editor can be detected as a dialog and floated.
+# Keep the hidden/recorder utility windows floating, but force editor windows into tiling.
+[[on-window-detected]]
+    if.app-id = 'com.timpler.screenstudio'
+    if.window-title-regex-substring = '^(|Start Recording|recording-manager-widget)$'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.timpler.screenstudio'
+    if.window-title-regex-substring = '^(?!Start Recording$|recording-manager-widget$).+'
+    run = 'layout tiling'
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping

@@ -3,6 +3,8 @@ import { truncateHead, DEFAULT_MAX_BYTES, DEFAULT_MAX_LINES, formatSize } from "
 import { Type, type Static } from "@sinclair/typebox";
 import { StringEnum } from "@mariozechner/pi-ai";
 import { Text } from "@mariozechner/pi-tui";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 const SearchParams = Type.Object({
 	query: Type.String({ description: "The search query" }),
@@ -66,6 +68,27 @@ interface ExaResponse {
 	autopromptString?: string;
 }
 
+function getExaApiKeyFromAuthFile(): string | undefined {
+	try {
+		const agentDir = process.env.PI_CODING_AGENT_DIR ?? join(process.env.HOME ?? "", ".pi", "agent");
+		const authPath = join(agentDir, "auth.json");
+		const auth = JSON.parse(readFileSync(authPath, "utf-8")) as Record<string, { type?: string; key?: string }>;
+
+		for (const provider of ["exa", "exa-search"]) {
+			const cred = auth[provider];
+			if (cred?.type !== "api_key" || !cred.key) continue;
+			if (cred.key.startsWith("!")) continue; // command-based keys are handled by modelRegistry
+			if (/^[A-Z0-9_]+$/.test(cred.key)) {
+				return process.env[cred.key] ?? undefined;
+			}
+			return cred.key;
+		}
+	} catch {
+		// Ignore parse/read errors; fall through to missing-key handling
+	}
+	return undefined;
+}
+
 export default function (pi: ExtensionAPI) {
 	pi.registerTool({
 		name: "exa_search",
@@ -76,13 +99,18 @@ export default function (pi: ExtensionAPI) {
 		parameters: SearchParams,
 
 		async execute(toolCallId, params: SearchParamsType, signal, onUpdate, ctx) {
-			const apiKey = process.env.EXA_API_KEY;
+			const apiKey =
+				process.env.EXA_API_KEY ??
+				(await ctx.modelRegistry.getApiKeyForProvider("exa")) ??
+				(await ctx.modelRegistry.getApiKeyForProvider("exa-search")) ??
+				getExaApiKeyFromAuthFile();
 			if (!apiKey) {
 				return {
 					content: [
 						{
 							type: "text",
-							text: "Error: EXA_API_KEY environment variable is not set. Get an API key at https://exa.ai",
+							text:
+								"Error: Missing Exa API key. Set EXA_API_KEY or add { \"exa\": { \"type\": \"api_key\", \"key\": \"...\" } } to ~/.pi/agent/auth.json (then /reload if needed). Get an API key at https://exa.ai",
 						},
 					],
 					details: { error: "missing_api_key" },

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "cli-highlight": "^2.1.11",
-    "glob": "^10.0.0",
+    "glob": "^13.0.6",
     "js-yaml": "^4.1.1"
   },
   "pi": {

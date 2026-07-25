@@ -1,0 +1,90 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "diff_view_style": "split",
+  "cli_default_open_behavior": "new_window",
+  "agent_servers": {
+    "pi-acp": {
+      "type": "registry"
+    },
+    "opencode": {
+      "type": "registry"
+    },
+    "factory-droid": {
+      "type": "registry"
+    },
+    "devin": {
+      "type": "registry"
+    },
+    "cursor": {
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "favorite_config_option_values": {
+        "mode": [
+          "bypassPermissions"
+        ],
+        "model": [
+          "claude-fable-5[1m]"
+        ]
+      },
+      "default_config_options": {
+        "mode": "bypassPermissions",
+        "model": "claude-fable-5[1m]"
+      },
+      "type": "registry"
+    },
+    "amp-acp": {
+      "type": "registry"
+    }
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "expand_terminal_card": false,
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "tree_view": true,
+    "dock": "left"
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "file_scan_inclusions": [".claude/worktrees/**"],
+  "vim_mode": true,
+  "terminal": {
+    "font_family": "Berkeley Mono Variable",
+    "max_scroll_history_lines": 5000
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "buffer_font_family": "Berkeley Mono Variable",
+  "base_keymap": "Cursor",
+  "ui_font_size": 14.0,
+  "buffer_font_size": 12.0,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Mocha",
+  },
+}
