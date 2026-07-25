@@ -46,6 +46,21 @@ Homebrew cleanup is intentionally disabled. nix-darwin activation manages
 formulae only; GUI applications are handled after activation with explicit
 existence checks.
 
+## macOS preferences
+
+`nix/macos.nix` owns the selected macOS preferences that should follow this
+account between machines:
+
+- linear mouse input with the current pointer speed
+- a fast, automatically hidden Dock
+- charger-only display, sleep, and network-wake behavior
+
+The power policy is deliberately applied only while connected to a charger.
+Battery energy mode, hibernation, and OS-generated scheduled wake events remain
+managed by macOS.
+
+Apply changes with `darwin-rebuild switch --flake ~/dotfiles#default`.
+
 ## Manual authentication
 
 Authentication is intentionally not synchronized:

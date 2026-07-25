@@ -42,6 +42,7 @@
             nixpkgs.hostPlatform = system;
           }
           ./nix/darwin.nix
+          ./nix/macos.nix
           nix-homebrew.darwinModules.nix-homebrew
           ./nix/homebrew.nix
           home-manager.darwinModules.home-manager
