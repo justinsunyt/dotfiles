@@ -2,6 +2,15 @@
 
 {
   system.defaults = {
+    NSGlobalDomain = {
+      AppleShowAllExtensions = true;
+      NSAutomaticCapitalizationEnabled = false;
+      NSAutomaticDashSubstitutionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticQuoteSubstitutionEnabled = false;
+      NSAutomaticSpellingCorrectionEnabled = false;
+    };
+
     CustomUserPreferences.NSGlobalDomain = {
       "com.apple.mouse.linear" = true;
       "com.apple.mouse.scaling" = 0.6875;
@@ -16,6 +25,13 @@
       show-recents = false;
       tilesize = 65;
     };
+
+    finder = {
+      ShowPathbar = true;
+      ShowStatusBar = true;
+    };
+
+    spaces.spans-displays = false;
   };
 
   # Preserve the current plugged-in development-machine policy without

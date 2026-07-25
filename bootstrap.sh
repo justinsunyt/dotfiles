@@ -4,6 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 PROFILE=${DOTFILES_PROFILE:-default}
+EXPECTED_USER=justin
+EXPECTED_HOME="/Users/$EXPECTED_USER"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "This bootstrap currently supports macOS only." >&2
@@ -15,11 +17,31 @@ if [[ "$(uname -m)" != "arm64" ]]; then
   exit 1
 fi
 
+if [[ "$(id -un)" != "$EXPECTED_USER" || "$HOME" != "$EXPECTED_HOME" ]]; then
+  echo "This configuration expects the macOS account $EXPECTED_USER at $EXPECTED_HOME." >&2
+  exit 1
+fi
+
+if [[ "$SCRIPT_DIR" != "$HOME/dotfiles" ]]; then
+  echo "Clone this repository to $HOME/dotfiles before bootstrapping." >&2
+  exit 1
+fi
+
 if ! xcode-select -p >/dev/null 2>&1; then
   echo "Installing the Xcode Command Line Tools..."
   xcode-select --install
-  echo "Finish that installation, then run ./bootstrap.sh again."
-  exit 0
+
+  if [[ ! -t 0 ]]; then
+    echo "Finish that installation, then rerun $SCRIPT_DIR/bootstrap.sh." >&2
+    exit 1
+  fi
+
+  read -r -p "Finish the installer, then press Return to continue: "
+
+  if ! xcode-select -p >/dev/null 2>&1; then
+    echo "The Xcode Command Line Tools are not available yet." >&2
+    exit 1
+  fi
 fi
 
 "$SCRIPT_DIR/scripts/prepare-home.sh"
@@ -59,11 +81,13 @@ if git -C "$SCRIPT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1 &&
 fi
 
 echo "Applying nix-darwin and Home Manager configuration..."
-sudo -H nix run github:nix-darwin/nix-darwin/master#darwin-rebuild -- \
+sudo -H nix --extra-experimental-features "nix-command flakes" \
+  run "$SCRIPT_DIR#darwin-rebuild" -- \
   switch --flake "$SCRIPT_DIR#$PROFILE"
 
 "$SCRIPT_DIR/scripts/bootstrap-apps.sh"
 "$SCRIPT_DIR/scripts/bootstrap-agent-tools.sh"
+"$SCRIPT_DIR/scripts/verify-bootstrap.sh"
 
 echo
 echo "Bootstrap complete. Open a new terminal and authenticate the listed tools."

@@ -60,6 +60,11 @@
         ];
       };
 
+      apps.${system}.darwin-rebuild = {
+        type = "app";
+        program = "${nix-darwin.packages.${system}.darwin-rebuild}/bin/darwin-rebuild";
+      };
+
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
     };
 }
