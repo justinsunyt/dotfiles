@@ -2,6 +2,7 @@ theme = Catppuccin Mocha
 font-family = Berkeley Mono Variable
 font-thicken = true
 macos-titlebar-style = tabs
+shell-integration-features = ssh-env,ssh-terminfo
 keybind = global:super+backslash=toggle_quick_terminal
 quick-terminal-position = bottom
 quick-terminal-animation-duration = 0
