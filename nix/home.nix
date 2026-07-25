@@ -40,6 +40,7 @@ in
       fzf
       gh
       git
+      ghostty-bin.terminfo
       gnugrep
       imagemagick
       jdk17
