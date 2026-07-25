@@ -7,6 +7,8 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
   exit 1
 fi
 
+export PATH="/opt/homebrew/bin:/run/current-system/sw/bin:$PATH"
+
 if ! command -v brew >/dev/null 2>&1; then
   echo "Homebrew is unavailable; apply the nix-darwin configuration first." >&2
   exit 1

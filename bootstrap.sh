@@ -51,11 +51,8 @@ NIX_DAEMON_PROFILE=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 source_nix_daemon_profile() {
   [[ -e "$NIX_DAEMON_PROFILE" ]] || return 0
 
-  # The installer profile references shell-specific variables such as
-  # ZSH_VERSION without defaults, so it is not safe to source under `set -u`.
   set +u
-  # shellcheck disable=SC1090
-  source "$NIX_DAEMON_PROFILE"
+  source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
   set -u
 }
 

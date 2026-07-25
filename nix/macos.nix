@@ -74,8 +74,6 @@
     };
   };
 
-  # Preserve the current plugged-in development-machine policy without
-  # imposing it on battery operation.
   system.activationScripts.postActivation.text = lib.mkAfter ''
     echo >&2 "configuring charger power policy..."
     /usr/bin/pmset -c \
