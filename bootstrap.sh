@@ -88,6 +88,7 @@ sudo -H nix --extra-experimental-features "nix-command flakes" \
   switch --flake "$SCRIPT_DIR#$PROFILE"
 
 "$SCRIPT_DIR/scripts/bootstrap-apps.sh"
+"$SCRIPT_DIR/scripts/bootstrap-tmux.sh"
 "$SCRIPT_DIR/scripts/bootstrap-agent-tools.sh"
 "$SCRIPT_DIR/scripts/verify-bootstrap.sh"
 

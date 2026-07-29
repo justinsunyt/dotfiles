@@ -92,6 +92,8 @@ sudo -H /run/current-system/sw/bin/darwin-rebuild switch \
   installed by Homebrew, NVM, and user-local tools.
 - LazyVim is linked from `dot_config/nvim`; plugins are pinned in
   `dot_config/nvim/lazy-lock.json`.
+- tmux is linked from `dot_config/tmux`; TPM installs the declared plugins
+  during bootstrap.
 - nix-darwin owns macOS preferences, system configuration, and the Homebrew
   formula declaration.
 - `scripts/bootstrap-apps.sh` installs missing macOS applications with Homebrew

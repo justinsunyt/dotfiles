@@ -58,6 +58,19 @@ for mapping in "${managed_links[@]}"; do
   fi
 done
 
+while IFS= read -r plugin_spec; do
+  plugin_repo=${plugin_spec%%#*}
+  plugin_name=${plugin_repo##*/}
+  plugin_name=${plugin_name%.git}
+
+  if [[ ! -d "$HOME/.tmux/plugins/$plugin_name" ]]; then
+    failures+=("missing tmux plugin: $plugin_name")
+  fi
+done < <(
+  sed -En "s/^[[:space:]]*set -g @plugin ['\"]([^'\"]+)['\"].*/\1/p" \
+    "$DOTFILES/dot_config/tmux/tmux.conf"
+)
+
 if (( ${#failures[@]} > 0 )); then
   echo "Bootstrap verification failed:" >&2
   printf '  - %s\n' "${failures[@]}" >&2
